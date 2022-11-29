@@ -6,29 +6,29 @@ OUTDIR = config['out_dir']
 
 rule all:
 	input:
-		expand("/Users/mhb8436/Workspaces/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTDIR)
+		expand("~/Workspaces/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTDIR)
 
 rule count:
 	input:
-		"/Users/mhb8436/Workspaces/snake/test4/resources/{filename}.txt"
+		"~/Workspaces/snake/test4/resources/{filename}.txt"
 	output:
-		"/Users/mhb8436/Workspaces/snake/test4/results/{OUTDIR}/wc_{filename}.txt"
+		"~/Workspaces/snake/test4/results/{OUTDIR}/wc_{filename}.txt"
 	shell:
 		"wc -w {input} > {output}"
 
 rule concat:
 	input:
-		expand('/Users/mhb8436/Workspaces/snake/test4/results/{OUTDIR}/wc_{filename}.txt', filename=FILENAMES, OUTDIR=OUTDIR)
+		expand('~/Workspaces/snake/test4/results/{OUTDIR}/wc_{filename}.txt', filename=FILENAMES, OUTDIR=OUTDIR)
 	output:
-		expand("/Users/mhb8436/Workspaces/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTDIR)
+		expand("~/Workspaces/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTDIR)
 	script:
 		"scripts/concat.py"
 
 rule plot:
 	input:
-		expand("/Users/mhb8436/Workspaces/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTDIR)
+		expand("~/Workspaces/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTDIR)
 	output:
-		expand("/Users/mhb8436/Workspaces/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTDIR)
+		expand("~/Workspaces/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTDIR)
 	script:
 		"scripts/plot.py"
 
