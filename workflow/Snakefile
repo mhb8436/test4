@@ -1,12 +1,13 @@
 configfile: "config/config.yaml"
 
 FILENAMES = ['A','B','C']
-OUTDIR = config['out_dir']
+OUTPUTS_DIR = config['OUTPUTS_DIR']
+DATA_DIR = config['DATA_DIR']
 #print(OUTDIR)
 
 rule all:
 	input:
-		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTDIR)
+		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTPUTS_DIR)
 
 rule count:
 	input:
@@ -18,17 +19,17 @@ rule count:
 
 rule concat:
 	input:
-		expand('/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_{filename}.txt', filename=FILENAMES, OUTDIR=OUTDIR)
+		expand('/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_{filename}.txt', filename=FILENAMES, OUTDIR=OUTPUTS_DIR)
 	output:
-		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTDIR)
+		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTPUTS_DIR)
 	script:
 		"scripts/concat.py"
 
 rule plot:
 	input:
-		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTDIR)
+		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.csv", OUTDIR=OUTPUTS_DIR)
 	output:
-		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTDIR)
+		expand("/Users/mhb8436/snake/test4/results/{OUTDIR}/wc_all.png", OUTDIR=OUTPUTS_DIR)
 	script:
 		"scripts/plot.py"
 
