@@ -1,2 +1,2 @@
-DATA_DIR: test
-OUTPUTS_DIR: test
+data_dir: test
+outputs_dir: test
